@@ -5,6 +5,7 @@ import 'package:frontend/constants/color_constant.dart';
 
 import '../constants/constants.dart';
 import '../screens/auth/login_screen.dart';
+import 'Explore.dart';
 
 class AppDrawer extends StatelessWidget {
   final String username;
@@ -138,7 +139,10 @@ class AppDrawer extends StatelessWidget {
                   leading: const Icon(Icons.explore, color: Colors.black),
                   title: const Text('Explore'),
                   onTap: () {
-                    // Navigate to explore
+                   Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) =>  ExploreTheCountry()),
+                    );
                   },
                 ),
                 // Activity Section

@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // class EnvProvider with ChangeNotifier {
 //   late final String projectId;

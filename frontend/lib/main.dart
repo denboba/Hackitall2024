@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'providers/auth_provider.dart';
 import 'screens/splash_screen/splash.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:http/http.dart' as http;
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();

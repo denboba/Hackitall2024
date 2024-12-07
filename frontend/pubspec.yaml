@@ -49,6 +49,8 @@ dependencies:
   video_player: ^2.9.1
   date_picker_timeline: ^1.2.6
 
+  path_provider: any
+  file_picker: ^8.0.7
 dev_dependencies:
   flutter_test:
     sdk: flutter

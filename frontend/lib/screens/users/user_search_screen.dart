@@ -292,7 +292,7 @@ class _UserSearchScreenState extends State<UserSearchScreen> {
 class FollowButton extends StatefulWidget {
   final String userId;
 
-  const FollowButton({Key? key, required this.userId}) : super(key: key);
+  const FollowButton({super.key, required this.userId});
 
   @override
   _FollowButtonState createState() => _FollowButtonState();
