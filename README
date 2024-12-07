@@ -1,0 +1,59 @@
+** README **
+
+main_project/
+|
+├── backend/          # Django REST API backend
+│   ├── venv/         # Python virtual environment (not committed to Git)
+│   ├── manage.py     # Django project entry point
+│   ├── requirements.txt  # Python dependencies
+│   └── <other Django project files>
+|
+└── frontend/         # Flutter application
+    ├── android/
+    ├── ios/
+    ├── lib/
+    ├── pubspec.yaml  # Flutter dependencies
+    └── <other Flutter project files>
+
+** SETUP ** (starting from the HackItAll root directory)
+---> FRONTEND SETUP:
+    cd backend
+    python -m venv venv
+    source venv/bin/activate  # On Windows: venv\Scripts\activate
+    pip install -r requirements.txt
+    python manage.py runserver
+
+    (Django part now uses rest_framework and corsheaders)
+
+---> BACKEND SETUP:
+    cd frontend
+    flutter pub get
+    flutter run
+
+** NOTES **
+    - Check DRF for Django REST Framework
+    - The backend server will run initially on http://127.0.0.1:8000/
+    - Always update requirements.txt when adding new Python dependencies (pip freeze > requirements.txt)
+    - Always update pubspec.yaml when adding new Flutter dependencies
+
+Future Enhancements:
+Deployment: Set up hosting for both backend (e.g., AWS, Heroku) and frontend (e.g., Firebase, App Store/Play Store)
+Authentication: Implement user authentication using Django REST Framework and integrate with Flutter.
+
+** GITHUB **
+git clone <repo-url>           # Clone the repository
+git status                     # Check the repository's status
+git checkout -b <branch-name>  # Create a new branch
+git add .                      # Stage all changes
+git commit -m "message"        # Commit staged changes with a message
+git push origin <branch-name>  # Push branch to remote repository
+git pull origin main           # Pull latest changes from main
+git checkout main              # Switch to the main branch
+git merge <branch-name>        # Merge a branch into main
+git branch -d <branch-name>    # Delete branch locally
+git push origin --delete <branch-name> # Delete branch remotely
+
+** Link-uri utile **
+https://www.djangoproject.com/
+https://docs.flutter.dev/
+https://www.django-rest-framework.org/
