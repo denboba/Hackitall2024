@@ -143,10 +143,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               MaterialPageRoute(builder: (context) => const HomeScreen()),
                             );
                           }
-                        } on InvalidCredentialsException {
-                          setState(() {
-                            _errorMessage = 'Invalid credentials. Please try again.';
-                          });
                         } catch (e) {
                           setState(() {
                             _errorMessage = 'An unknown error occurred. Please try again.';

@@ -1,11 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:frontend/constants/color_constant.dart';
-import 'package:frontend/models/string_constants.dart';
 import 'package:frontend/providers/auth_provider.dart';
 import 'package:frontend/screens/auth/login_screen.dart';
-import 'package:intl/intl.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
+import 'package:country_picker/country_picker.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -32,6 +31,10 @@ class _SignupScreenState extends State<SignupScreen> {
   bool _isLoading = false;
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
+
+  // Country picker related variables
+  Country? selectedNationalityCountry;
+  Country? selectedResidenceCountry;
 
   @override
   void dispose() {
@@ -70,7 +73,6 @@ class _SignupScreenState extends State<SignupScreen> {
         lastName: lastNameController.text,
         username: userNameController.text,
       );
-
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Registration successful! Please log in.')),
       );
@@ -107,17 +109,17 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              _buildTextField(userNameController, 'Username', Icons.person),
-              _buildTextField(firstNameController, 'First Name', Icons.person),
-              _buildTextField(lastNameController, 'Last Name', Icons.person),
-              _buildTextField(emailController, 'Email', Icons.email),
-              _buildTextField(passwordController, 'Password', Icons.lock, isPassword: true),
-              _buildTextField(confirmPasswordController, 'Confirm Password', Icons.lock, isPassword: true),
-              _buildTextField(phoneController, 'Phone', Icons.phone),
-              _buildTextField(nationalityCountryController, 'Nationality Country', Icons.flag),
-              _buildTextField(nationalityCityController, 'Nationality City', Icons.location_city),
-              _buildTextField(residenceCountryController, 'Residence Country', Icons.home),
-              _buildTextField(residenceCityController, 'Residence City', Icons.location_city),
+              _buildTextField(userNameController, 'Username', Icons.person, iconColor: ColorConstant.buttonColor),
+              _buildTextField(firstNameController, 'First Name', Icons.person, iconColor: ColorConstant.buttonColor),
+              _buildTextField(lastNameController, 'Last Name', Icons.person, iconColor: ColorConstant.buttonColor),
+              _buildTextField(emailController, 'Email', Icons.email, iconColor: ColorConstant.buttonColor),
+              _buildTextField(passwordController, 'Password', Icons.lock, isPassword: true, iconColor: ColorConstant.buttonColor),
+              _buildTextField(confirmPasswordController, 'Confirm Password', Icons.lock, isPassword: true, iconColor: ColorConstant.buttonColor),
+              _buildTextField(phoneController, 'Phone', Icons.phone, iconColor: ColorConstant.buttonColor),
+              _buildCountryPicker('Nationality Country', nationalityCountryController, true),
+              _buildTextField(nationalityCityController, 'Nationality City', Icons.location_city, iconColor: ColorConstant.buttonColor),
+              _buildCountryPicker('Residence Country', residenceCountryController, false),
+              _buildTextField(residenceCityController, 'Residence City', Icons.location_city, iconColor: ColorConstant.buttonColor),
               const SizedBox(height: 20),
               _isLoading
                   ? const Center(child: CircularProgressIndicator())
@@ -148,7 +150,8 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  Widget _buildTextField(TextEditingController controller, String label, IconData icon, {bool isPassword = false}) {
+  // Method to build text fields
+  Widget _buildTextField(TextEditingController controller, String label, IconData icon, {bool isPassword = false, Color iconColor = ColorConstant.buttonColor}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: TextFormField(
@@ -156,10 +159,10 @@ class _SignupScreenState extends State<SignupScreen> {
         obscureText: isPassword ? _obscurePassword : false,
         decoration: InputDecoration(
           labelText: label,
-          prefixIcon: Icon(icon),
+          prefixIcon: Icon(icon, color: iconColor),
           suffixIcon: isPassword
               ? IconButton(
-            icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
+            icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off, color: iconColor),
             onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
           )
               : null,
@@ -170,6 +173,47 @@ class _SignupScreenState extends State<SignupScreen> {
           return null;
         },
       ),
+    );
+  }
+
+  // Method to add country picker
+  Widget _buildCountryPicker(String label, TextEditingController controller, bool isNationality) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: InkWell(
+        onTap: () => _showCountryPicker(isNationality),
+        child: InputDecorator(
+          decoration: InputDecoration(
+            prefixIcon: const Icon(Icons.flag, color: ColorConstant.buttonColor),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
+            labelText: label,
+          ),
+          child: Text(
+            isNationality
+                ? (selectedNationalityCountry?.name ?? 'Select Country')
+                : (selectedResidenceCountry?.name ?? 'Select Country'),
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Method to show country picker
+  void _showCountryPicker(bool isNationality) {
+    showCountryPicker(
+      context: context,
+      onSelect: (Country country) {
+        setState(() {
+          if (isNationality) {
+            selectedNationalityCountry = country;
+            nationalityCountryController.text = country.name;
+          } else {
+            selectedResidenceCountry = country;
+            residenceCountryController.text = country.name;
+          }
+        });
+      },
     );
   }
 }

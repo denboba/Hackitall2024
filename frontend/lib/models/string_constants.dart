@@ -33,7 +33,7 @@ class AppStrings {
   static const String createAccount = 'Create Account';
   static const String alreadyHaveAccount = 'Already have an account?';
 
-  static var username = 'Username not found';
+  static var username = 'Username';
 
 
 }

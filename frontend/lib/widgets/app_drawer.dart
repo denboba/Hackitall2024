@@ -140,10 +140,7 @@ class AppDrawer extends StatelessWidget {
                   leading: const Icon(Icons.explore, color: Colors.black),
                   title: const Text('Explore'),
                   onTap: () {
-                   Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) =>  ExploreTheCountry()),
-                    );
+
                   },
                 ),
                 // Activity Section

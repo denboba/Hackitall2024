@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:frontend/models/string_constants.dart';
-import 'package:frontend/screens/post/upload_image_screen.dart';
 import 'package:frontend/screens/users/users.dart';
 
 import 'package:provider/provider.dart';
@@ -23,21 +22,48 @@ class HomeScreen extends StatelessWidget {
     final userName = authProvider.loggedInUserName;
     final phoneNumber = authProvider.loggedInUserPhone;
     final email = authProvider.loggedInUserEmail;
-   // final bio = authProvider.loggedInUserBio;
+    final first = authProvider.loggedInUserFirstName;
+    final last = authProvider.loggedInUserLastName;
+
+
+
 
     return DefaultTabController(
       length: 5,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: const Text(
+          title: Text(
             AppStrings.appName,
             style: TextStyle(
-                color: Colors.deepPurple,
-                fontWeight: FontWeight.bold,
-                fontSize: 50),
+              fontWeight: FontWeight.bold, // Bold text
+              fontSize: 40, // Increase font size
+              foreground: Paint()
+                ..shader = const LinearGradient(
+                  colors: <Color>[Colors.blue, Colors.deepPurple, Colors.pink], // Gradient with more colors
+                  begin: Alignment.topLeft, // Gradient direction
+                  end: Alignment.bottomRight,
+                ).createShader(const Rect.fromLTWH(0.0, 0.0, 300.0, 70.0)), // Shader area
+              shadows: [
+                Shadow(
+                  blurRadius: 8.0, // Soft shadow for more subtle effect
+                  color: Colors.black.withOpacity(0.4), // Slightly lighter shadow
+                  offset: Offset(5.0, 5.0), // Offset for the shadow
+                ),
+                Shadow(
+                  blurRadius: 20.0,
+                  color: Colors.white.withOpacity(0.4), // A little white shadow for glow
+                  offset: Offset(-5.0, -5.0), // Light glow effect from top-left
+                ),
+              ],
+              letterSpacing: 2.0, // Adjust letter spacing for a clean look
+              fontFamily: 'Roboto', // Use a smooth and readable font (customizable)
+              height: 1.2, // Adjust line height for better vertical spacing
+            ),
           ),
-          centerTitle: true,
+
+
+        centerTitle: true,
           bottom: const TabBar(
             tabs: [
               Tab(icon: Icon(Icons.home), text: "Home"),
@@ -50,9 +76,9 @@ class HomeScreen extends StatelessWidget {
         ),
         drawer: AppDrawer(
             username: userName,
-            name: userName,
+            name: "$first $last",
             bio: bios[(Random().nextInt(bios.length))],
-            profileImageUrl: "ajjaj"
+            profileImageUrl: "_____"
         ),
         body:  TabBarView(
           children: [

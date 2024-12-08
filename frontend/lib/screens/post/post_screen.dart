@@ -6,10 +6,10 @@ class PostUploadForm extends StatefulWidget {
   const PostUploadForm({super.key});
 
   @override
-  PostUploadFormState createState() => PostUploadFormState();
+  _PostUploadFormState createState() => _PostUploadFormState();
 }
 
-class PostUploadFormState extends State<PostUploadForm> {
+class _PostUploadFormState extends State<PostUploadForm> {
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _tagsController = TextEditingController();
   XFile? _imageFile; // Nullable since no image might be selected
@@ -76,58 +76,55 @@ class PostUploadFormState extends State<PostUploadForm> {
               ),
               const SizedBox(height: 16),
 
-              // Row layout for image and form
+              // Column layout for image and form
               if (_imageFile != null)
-                Row(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Display selected image
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.file(
-                        File(_imageFile!.path),
-                        height: 200,
-                        width: 200,
-                        fit: BoxFit.cover,
+                    Center(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.file(
+                          File(_imageFile!.path),
+                          height: 200,
+                          width: 200,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-
-                    // Spacer to push the form fields to the right
-                    const SizedBox(width: 16),
-
-                    // Form fields
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Description field
-                          TextField(
-                            controller: _descriptionController,
-                            decoration: const InputDecoration(
-                              labelText: 'Description',
-                              border: OutlineInputBorder(),
-                              contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                            ),
-                            maxLines: 4,
-                          ),
-                          const SizedBox(height: 16),
-
-                          // Tags field
-                          TextField(
-                            controller: _tagsController,
-                            decoration: const InputDecoration(
-                              labelText: 'Tags (comma-separated)',
-                              border: OutlineInputBorder(),
-                              contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    const SizedBox(height: 16),
                   ],
                 ),
 
-              if (_imageFile == null) const SizedBox(height: 16),
+              // Form fields
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Description field
+                  TextField(
+                    controller: _descriptionController,
+                    decoration: const InputDecoration(
+                      labelText: 'Description',
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    ),
+                    maxLines: 4,
+                  ),
+                  const SizedBox(height: 16),
+
+                  // Tags field
+                  TextField(
+                    controller: _tagsController,
+                    decoration: const InputDecoration(
+                      labelText: 'Tags (comma-separated)',
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
 
               // Submit button
               Center(

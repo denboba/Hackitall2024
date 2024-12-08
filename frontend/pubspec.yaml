@@ -51,6 +51,7 @@ dependencies:
 
   path_provider: any
   file_picker: ^8.0.7
+  country_picker: ^2.0.27
 dev_dependencies:
   flutter_test:
     sdk: flutter
