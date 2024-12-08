@@ -147,7 +147,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;  // Track the current page index
 
-  // Define the content for each page (title, description, image)
   final List<Map<String, String>> onboardingData = [
     {
       "title": "Welcome to MyTribe",
@@ -260,11 +259,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               if (_currentPage == onboardingData.length - 1)
                 ElevatedButton(
                   onPressed: () {
-                    // Navigate to the login screen after finishing onboarding
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => const LoginScreen()),
-                    );
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                   },
                   child: const Text("Get Started"),
                 )

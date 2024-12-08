@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/auth_provider.dart';
-import '../../providers/current_user_provider.dart';
 import '../home/home_screen.dart';
 import 'signup.dart';
 import '../../models/string_constants.dart';
@@ -51,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   fontSize: 40, // Increase font size
                   foreground: Paint()
                     ..shader = const LinearGradient(
-                      colors: <Color>[Colors.blue, Colors.deepPurple, Colors.pink], // Gradient with more colors
+                      colors: <Color>[Colors.blue,ColorConstant.buttonColor, ColorConstant.buttonColor], // Gradient with more colors
                       begin: Alignment.topLeft, // Gradient direction
                       end: Alignment.bottomRight,
                     ).createShader(const Rect.fromLTWH(0.0, 0.0, 300.0, 70.0)), // Shader area

@@ -17,6 +17,8 @@ class AuthProvider with ChangeNotifier {
 
   AuthProvider({required this.apiUrl});
 
+  get isLoggedIn => _loggedInUser != null;
+
   Future<void> initialize() async {
     _loggedInUser = null;
     notifyListeners();

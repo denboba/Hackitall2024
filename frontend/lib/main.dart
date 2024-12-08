@@ -1,11 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:frontend/providers/current_user_provider.dart';
 import 'package:frontend/providers/user_provider.dart';
 import 'package:frontend/screens/auth/login_screen.dart';
+import 'package:frontend/screens/splash_screen/splash.dart'; // Make sure this import is correct
 import 'package:provider/provider.dart';
 import 'providers/auth_provider.dart';
-import 'screens/splash_screen/splash.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future main() async {
@@ -33,10 +32,16 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         debugShowCheckedModeBanner: false,
-       // //home: const OnboardingScreen(), // Show Onboarding Screen first
-        home: const LoginScreen()
-
+        home: Consumer<AuthProvider>(
+          builder: (context, authProvider, _) {
+            return authProvider.isLoggedIn
+                ? const LoginScreen()
+                : const OnboardingScreen(); // Make sure OnboardingScreen is imported
+          },
+        ),
       ),
     );
   }
 }
+
+

@@ -1,4 +1,3 @@
-import 'package:flutter/src/widgets/framework.dart';
 
 class AppStrings {
   static const String appName = "MyTribe";

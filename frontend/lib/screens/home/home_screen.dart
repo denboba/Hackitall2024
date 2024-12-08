@@ -5,9 +5,9 @@ import 'package:frontend/models/string_constants.dart';
 import 'package:frontend/screens/users/users.dart';
 
 import 'package:provider/provider.dart';
+import '../../constants/color_constant.dart';
 import '../../constants/constants.dart';
 import '../../providers/auth_provider.dart';
-import '../../providers/current_user_provider.dart';
 import '../../widgets/app_drawer.dart';
 import '../../widgets/Explore.dart';
 
@@ -41,20 +41,20 @@ class HomeScreen extends StatelessWidget {
               fontSize: 40, // Increase font size
               foreground: Paint()
                 ..shader = const LinearGradient(
-                  colors: <Color>[Colors.blue, Colors.deepPurple, Colors.pink], // Gradient with more colors
+                  colors: <Color>[Colors.blue, ColorConstant.buttonColor, ColorConstant.buttonColor], // Gradient with more colors
                   begin: Alignment.topLeft, // Gradient direction
                   end: Alignment.bottomRight,
                 ).createShader(const Rect.fromLTWH(0.0, 0.0, 300.0, 70.0)), // Shader area
               shadows: [
                 Shadow(
-                  blurRadius: 8.0, // Soft shadow for more subtle effect
-                  color: Colors.black.withOpacity(0.4), // Slightly lighter shadow
-                  offset: Offset(5.0, 5.0), // Offset for the shadow
+                  blurRadius: 8.0,
+                  color: Colors.black.withOpacity(0.3),
+                  offset: Offset(5.0, 5.0),
                 ),
                 Shadow(
                   blurRadius: 20.0,
-                  color: Colors.white.withOpacity(0.4), // A little white shadow for glow
-                  offset: Offset(-5.0, -5.0), // Light glow effect from top-left
+                  color: Colors.white.withOpacity(0.3),
+                  offset: Offset(-5.0, -5.0),
                 ),
               ],
               letterSpacing: 2.0, // Adjust letter spacing for a clean look

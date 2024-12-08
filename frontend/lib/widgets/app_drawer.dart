@@ -1,3 +1,4 @@
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -6,7 +7,6 @@ import 'package:frontend/widgets/settings.dart';
 
 import '../constants/constants.dart';
 import '../screens/auth/login_screen.dart';
-import 'Explore.dart';
 
 class AppDrawer extends StatelessWidget {
   final String username;
@@ -124,7 +124,9 @@ class AppDrawer extends StatelessWidget {
                   leading: const Icon(Icons.grid_on, color: Colors.black),
                   title: const Text('Your Posts'),
                   onTap: () {
-                    //TODO: Navigate to user's posts
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Cannot load your posts")),
+                    );
                   },
                 ),
                 // Saved Section
@@ -132,23 +134,21 @@ class AppDrawer extends StatelessWidget {
                   leading: const Icon(Icons.bookmark, color: Colors.black),
                   title: const Text('Saved'),
                   onTap: () {
-                    //TODO: Navigate to saved posts
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("You have no saved posts")),
+                    );
                   },
                 ),
                 // Explore Section
-                ListTile(
-                  leading: const Icon(Icons.explore, color: Colors.black),
-                  title: const Text('Explore'),
-                  onTap: () {
 
-                  },
-                ),
                 // Activity Section
                 ListTile(
                   leading: const Icon(Icons.notifications, color: Colors.black),
                   title: const Text('Activity'),
                   onTap: () {
-                    // Navigate to activity
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("No new notifications")),
+                    );
                   },
                 ),
                 // Settings Section
@@ -156,8 +156,9 @@ class AppDrawer extends StatelessWidget {
                   leading: const Icon(Icons.settings, color: Colors.black),
                   title: const Text('Settings'),
                   onTap: () {
-                    Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => const Settings())
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Settings()),
                     );
                   },
                 ),
@@ -166,7 +167,6 @@ class AppDrawer extends StatelessWidget {
                   leading: const Icon(Icons.logout, color: Colors.black),
                   title: const Text('Logout'),
                   onTap: () {
-                    // return to login screen
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => const LoginScreen()),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Settings extends StatefulWidget {
-  const Settings({Key? key}) : super(key: key);
+  const Settings({super.key});
 
   @override
   _SettingsState createState() => _SettingsState();
@@ -27,18 +27,28 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
+    // Get screen width and height for responsive design
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    // Set font size dynamically based on screen width
+    double fontSize = screenWidth > 600 ? 18.0 : 16.0;  // Larger font on bigger screens
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),  // Responsive padding
         child: ListView(
           children: [
             // Profile Section
             ListTile(
               leading: const Icon(Icons.person),
-              title: const Text('Profile Settings'),
+              title: Text(
+                'Profile Settings',
+                style: TextStyle(fontSize: fontSize),  // Dynamic font size
+              ),
               onTap: () {
                 // Navigate to profile editing screen
               },
@@ -48,7 +58,10 @@ class _SettingsState extends State<Settings> {
 
             // Notifications Section
             SwitchListTile(
-              title: const Text('Enable Notifications'),
+              title: Text(
+                'Enable Notifications',
+                style: TextStyle(fontSize: fontSize),  // Dynamic font size
+              ),
               value: _notificationsEnabled,
               onChanged: _toggleNotifications,
             ),
@@ -58,7 +71,10 @@ class _SettingsState extends State<Settings> {
             // Language Section
             ListTile(
               leading: const Icon(Icons.language),
-              title: Text('Language: $_selectedLanguage'),
+              title: Text(
+                'Language: $_selectedLanguage',
+                style: TextStyle(fontSize: fontSize),  // Dynamic font size
+              ),
               onTap: () {
                 // Show language options
                 showDialog(
@@ -97,9 +113,12 @@ class _SettingsState extends State<Settings> {
             // Privacy Section
             ListTile(
               leading: const Icon(Icons.lock),
-              title: const Text('Privacy Settings'),
+              title: Text(
+                'Privacy Settings',
+                style: TextStyle(fontSize: fontSize),  // Dynamic font size
+              ),
               onTap: () {
-
+                // Navigate to privacy settings screen
               },
             ),
           ],
