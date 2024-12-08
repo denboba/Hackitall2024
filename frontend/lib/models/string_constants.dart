@@ -1,3 +1,5 @@
+import 'package:flutter/src/widgets/framework.dart';
+
 class AppStrings {
   static const String appName = "MyTribe";
   static const String emialError = "please enter your email";
@@ -30,6 +32,10 @@ class AppStrings {
   static const String signup = 'Sign Up';
   static const String createAccount = 'Create Account';
   static const String alreadyHaveAccount = 'Already have an account?';
+
+  static var username = 'Username not found';
+
+
 }
 
 class AppErrors {

@@ -9,6 +9,9 @@ import 'package:provider/provider.dart';
 import '../../constants/constants.dart';
 import '../../providers/auth_provider.dart';
 import '../../widgets/app_drawer.dart';
+import '../../widgets/Explore.dart';
+
+import '../post/post_screen.dart';
 import '../users/user_search_screen.dart';
 import 'home_page.dart';
 class HomeScreen extends StatelessWidget {
@@ -19,9 +22,11 @@ class HomeScreen extends StatelessWidget {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
     final userName = authProvider.loggedInUserName;
     final phoneNumber = authProvider.loggedInUserPhone;
+    final email = authProvider.loggedInUserEmail;
+   // final bio = authProvider.loggedInUserBio;
 
     return DefaultTabController(
-      length: 4,
+      length: 5,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -36,24 +41,26 @@ class HomeScreen extends StatelessWidget {
           bottom: const TabBar(
             tabs: [
               Tab(icon: Icon(Icons.home), text: "Home"),
-              Tab(icon: Icon(Icons.search), text: 'search'),
-              Tab(icon: Icon(Icons.person), text: 'connect'),
-              Tab(icon: Icon(Icons.add_box_outlined), text: 'post'),
+              Tab(icon: Icon(Icons.search), text: 'Search'),
+              Tab(icon: Icon(Icons.person), text: 'Connect'),
+              Tab(icon: Icon(Icons.add_box_outlined), text: 'Post'),
+              Tab(icon: Icon(Icons.explore), text: 'Explore'),
             ],
           ),
         ),
         drawer: AppDrawer(
-            username: "@john",
-            name: "john DOE",
+            username: userName,
+            name: userName,
             bio: bios[(Random().nextInt(bios.length))],
             profileImageUrl: "ajjaj"
         ),
-        body: const TabBarView(
+        body:  TabBarView(
           children: [
-            Center(child: HomePage()),
-            Center(child: UserSearchScreen()),
-            Center(child: UsersScreen()),
-            Center(child: MediaUploadWidget()),
+            const Center(child: HomePage()),
+            const Center(child: UserSearchScreen()),
+            const Center(child: UsersScreen()),
+            const Center(child: PostUploadForm()),
+                Center(child: ExploreTheCountry()),
           ],
         ),
       ),

@@ -14,24 +14,25 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController emailController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController(); // Username controller
   final TextEditingController passwordController = TextEditingController();
   bool _obscureText = true;
   bool _isLoading = false;
   String? _errorMessage; // Variable to store the error message
+
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
-   print("You are in login screen${authProvider.loggedInUser}");
+    print("You are in login screen${authProvider.loggedInUser}");
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       authProvider.initialize().then((_) {
-        // TODO: UNCOMMENT THIS
-        //if (authProvider.loggedInUser != null) {
+        if (authProvider.loggedInUser != null) {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => const HomeScreen()),
           );
-      //  }
+        }
       });
     });
 
@@ -60,24 +61,27 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: const TextStyle(color: Colors.red),
                 ),
               const SizedBox(height: 16.0),
+
+              // Username Input Field
               TextFormField(
-                controller: emailController,
+                controller: usernameController,
                 decoration: InputDecoration(
-                  labelText: AppStrings.email,
+                  labelText: AppStrings.username, // Updated label to "Username"
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                  prefixIcon: const Icon(Icons.email,
-                      color: ColorConstant.lightButtonColor),
+                  prefixIcon: const Icon(Icons.person, color: ColorConstant.lightButtonColor),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return AppStrings.emialError;
+                    //return AppStrings.usernameError; // Username validation error message
                   }
                   return null;
                 },
               ),
               const SizedBox(height: 16.0),
+
+              // Password Input Field
               TextFormField(
                 controller: passwordController,
                 decoration: InputDecoration(
@@ -85,8 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                  prefixIcon: const Icon(Icons.lock,
-                      color: ColorConstant.lightButtonColor),
+                  prefixIcon: const Icon(Icons.lock, color: ColorConstant.lightButtonColor),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscureText ? Icons.visibility_off : Icons.visibility,
@@ -108,6 +111,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
               ),
               const SizedBox(height: 24.0),
+
+              // Login Button
               if (_isLoading)
                 const Center(child: CircularProgressIndicator())
               else
@@ -116,12 +121,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     ElevatedButton(
                       onPressed: () async {
-                        // Check if email or password fields are empty
-                        if (emailController.text.isEmpty ||
-                            passwordController.text.isEmpty) {
+                        // Check if username or password fields are empty
+                        if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
                           setState(() {
-                            _errorMessage =
-                                'Please enter both email and password.';
+                            _errorMessage = 'Please enter both username and password.';
                             passwordController.clear();
                           });
                           return; // Exit the function early
@@ -133,29 +136,20 @@ class _LoginScreenState extends State<LoginScreen> {
                         });
 
                         try {
-                          await authProvider.login(
-                              emailController.text, passwordController.text);
+                          await authProvider.login(usernameController.text, passwordController.text);
                           if (authProvider.loggedInUser != null) {
                             Navigator.pushReplacement(
                               context,
-                              MaterialPageRoute(
-                                  builder: (context) => const HomeScreen()),
+                              MaterialPageRoute(builder: (context) => const HomeScreen()),
                             );
                           }
-                        } on UserNotFoundException {
-                          setState(() {
-                            _errorMessage =
-                                'User not found. Please check your email or sign up.';
-                          });
                         } on InvalidCredentialsException {
                           setState(() {
-                            _errorMessage =
-                                'Invalid credentials. Please try again.';
+                            _errorMessage = 'Invalid credentials. Please try again.';
                           });
                         } catch (e) {
                           setState(() {
-                            _errorMessage =
-                                'An unknown error occurred. Please try again.';
+                            _errorMessage = 'An unknown error occurred. Please try again.';
                           });
                         } finally {
                           setState(() {
@@ -168,14 +162,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0),
                         ),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 12.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
                       ),
                       child: Text(AppStrings.login,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium!
-                              .copyWith(color: Colors.white)),
+                          style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.white)),
                     ),
                     const SizedBox(height: 16.0),
                     Row(
@@ -186,17 +176,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                  builder: (context) => const SignupScreen()),
+                              MaterialPageRoute(builder: (context) => const SignupScreen()),
                             );
                           },
                           child: Text(AppStrings.signup,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineMedium!
-                                  .copyWith(
-                                      color: ColorConstant.buttonColor,
-                                      fontWeight: FontWeight.w900)),
+                              style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                                color: ColorConstant.buttonColor,
+                                fontWeight: FontWeight.w900,
+                              )),
                         ),
                       ],
                     ),

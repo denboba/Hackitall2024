@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:frontend/constants/color_constant.dart';
+import 'package:frontend/widgets/settings.dart';
 
 import '../constants/constants.dart';
 import '../screens/auth/login_screen.dart';
@@ -158,7 +159,9 @@ class AppDrawer extends StatelessWidget {
                   leading: const Icon(Icons.settings, color: Colors.black),
                   title: const Text('Settings'),
                   onTap: () {
-                    // Handle Settings
+                    Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => const Settings())
+                    );
                   },
                 ),
                 // Logout Section

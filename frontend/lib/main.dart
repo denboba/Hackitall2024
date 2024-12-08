@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:frontend/providers/user_provider.dart';
+import 'package:frontend/screens/auth/login_screen.dart';
 import 'package:provider/provider.dart';
 import 'providers/auth_provider.dart';
 import 'screens/splash_screen/splash.dart';
@@ -31,8 +32,8 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         debugShowCheckedModeBanner: false,
-       home: const OnboardingScreen(), // Show Onboarding Screen first
-      //  home: const LoginScreen()
+       //home: const OnboardingScreen(), // Show Onboarding Screen first
+       home: const LoginScreen()
       ),
     );
   }

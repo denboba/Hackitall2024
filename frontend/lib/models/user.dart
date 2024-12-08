@@ -1,6 +1,6 @@
-
 class User {
   final String userName;
+  final String password;
   final String firstName;
   final String lastName;
   final String email;
@@ -17,6 +17,7 @@ class User {
 
   User({
     required this.userName,
+    required this.password,
     required this.firstName,
     required this.lastName,
     required this.email,
@@ -33,25 +34,22 @@ class User {
   });
 
   factory User.fromMap(Map<String, dynamic> map) {
-    final data = map;  // The map passed directly represents a user object in the API response
-    final location = data['location'];
-    final coordinates = location['coordinates'];
-
     return User(
-      userName: data['login']['username'] ?? '',
-      firstName: data['name']['first'] ?? '',
-      lastName: data['name']['last'] ?? '',
-      email: data['email'] ?? '',
-      age: data['dob']['age'] ?? 0,
-      phone: data['phone'] ?? '',
-      dateOfBirth: data['dob']['date'] ?? '',
-      nationalityCountry: data['nat'] ?? '',  // Nationality is a single string
-      nationalityCity: location['city'] ?? '',  // Assuming city as nationality city
-      residenceCountry: location['country'] ?? '',
-      residenceCity: location['city'] ?? '',
-      profilePicture: data['picture']['large'] ?? "Image not found",
-      latitude: double.tryParse(coordinates['latitude'] ?? '0.0') ?? 0.0,
-      longitude: double.tryParse(coordinates['longitude'] ?? '0.0') ?? 0.0,
+      userName: map['username'] ?? '',
+      password: map['password'] ?? '',
+      firstName: map['first_name'] ?? '',
+      lastName: map['last_name'] ?? '',
+      email: map['email'] ?? '',
+      age: int.tryParse(map['age']?.toString() ?? '0') ?? 0, // Handles null, empty, or string "age"
+      phone: map['phone'] ?? '',
+      dateOfBirth: map['date_of_birth'] ?? '',
+      nationalityCountry: map['nationality_country'] ?? '', // Corrected key
+      nationalityCity: map['nationality_city'] ?? '', // Corrected key
+      residenceCountry: map['residence_country'] ?? '', // Corrected key
+      residenceCity: map['residence_city'] ?? '',
+      profilePicture: map['profile_picture'] ?? 'Image not found',
+      latitude: double.tryParse(map['latitude']?.toString() ?? '0.0') ?? 0.0,
+      longitude: double.tryParse(map['longitude']?.toString() ?? '0.0') ?? 0.0,
     );
   }
 }
