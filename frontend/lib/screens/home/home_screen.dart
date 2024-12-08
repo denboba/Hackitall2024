@@ -7,6 +7,7 @@ import 'package:frontend/screens/users/users.dart';
 import 'package:provider/provider.dart';
 import '../../constants/constants.dart';
 import '../../providers/auth_provider.dart';
+import '../../providers/current_user_provider.dart';
 import '../../widgets/app_drawer.dart';
 import '../../widgets/Explore.dart';
 
@@ -24,6 +25,8 @@ class HomeScreen extends StatelessWidget {
     final email = authProvider.loggedInUserEmail;
     final first = authProvider.loggedInUserFirstName;
     final last = authProvider.loggedInUserLastName;
+    final userProfileProvider = Provider.of<UserProfileProvider>(context);
+    print("this is the user profile provider $userProfileProvider");
 
 
 

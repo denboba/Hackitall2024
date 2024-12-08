@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/auth_provider.dart';
+import '../../providers/current_user_provider.dart';
 import '../home/home_screen.dart';
 import 'signup.dart';
 import '../../models/string_constants.dart';
@@ -23,7 +24,8 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    print("You are in login screen${authProvider.loggedInUser}");
+    final userProfileProvider = Provider.of<UserProfileProvider>(context, listen: false);
+
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       authProvider.initialize().then((_) {
@@ -137,7 +139,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         try {
                           await authProvider.login(usernameController.text, passwordController.text);
+                          await userProfileProvider.fetchUserProfile(usernameController.text);
                           if (authProvider.loggedInUser != null) {
+                            print("You are in login screen${authProvider.loggedInUser}");
+
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(builder: (context) => const HomeScreen()),

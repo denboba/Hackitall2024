@@ -18,13 +18,14 @@ class UserProvider with ChangeNotifier {
 
       bool hasMoreUsers = true;
       while (hasMoreUsers) {
-        final url = Uri.parse('$apiUrl/users');
+        final url = Uri.parse('$apiUrl/users/filter?field=nationality_country&value=Ethiopia');
         final response = await http.get(url);
+        print(response.body);
 
 
         if (response.statusCode == 200) {
           final data = json.decode(response.body);
-          List<User> newUsers = (data as List)
+          List<User> newUsers = (data["users"] as List)
               .map((userData) => User.fromMap(userData))  // Map each result to a User object
               .toList();
           _users.addAll(newUsers);

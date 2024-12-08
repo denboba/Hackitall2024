@@ -5,7 +5,7 @@ import 'dart:convert';
 class AuthProvider with ChangeNotifier {
   Map<String, dynamic>? _loggedInUser;
   Map<String, dynamic>? get loggedInUser => _loggedInUser;
-  String get loggedInUserName => _loggedInUser?['username'] ?? 'Guest';
+  String get loggedInUserName => _loggedInUser?['username'] ?? '';
   String get loggedInUserEmail => _loggedInUser?['email'] ?? '';
   String get loggedInUserPhone => _loggedInUser?['phone'] ?? '';
   String get loggedInUserUsername => _loggedInUser?['username'] ?? 'John';
@@ -37,11 +37,10 @@ class AuthProvider with ChangeNotifier {
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> userData = json.decode(response.body);
-        _loggedInUser = userData;
+        final _user = await http.get(Uri.parse('$apiUrl/users/$username'));
+        _loggedInUser = json.decode(_user.body);
         notifyListeners();
       } else {
-        print('Login error: ${response.statusCode}');
-        print(response.body);
         throw Exception('Login failed');
       }
     } catch (e) {
@@ -185,13 +184,3 @@ class UserAlreadyExistsException implements Exception {
   @override
   String toString() => 'User with this email already exists.';
 }
-
-// class UserNotFoundException implements Exception {
-//   @override
-//   String toString() => 'User not found. Please check your credentials.';
-// }
-
-// class InvalidCredentialsException implements Exception {
-//   @override
-//   String toString() => 'Invalid credentials. Please try again.';
-// }

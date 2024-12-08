@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:frontend/providers/current_user_provider.dart';
 import 'package:frontend/providers/user_provider.dart';
 import 'package:frontend/screens/auth/login_screen.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider(apiUrl: apiUrl)),
         ChangeNotifierProvider(create: (_) => UserProvider(apiUrl: apiUrl)),
+        ChangeNotifierProvider(create: (context) => UserProfileProvider(),)
       ],
       child: MaterialApp(
         theme: ThemeData(
@@ -32,8 +34,9 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         debugShowCheckedModeBanner: false,
-       //home: const OnboardingScreen(), // Show Onboarding Screen first
-       home: const LoginScreen()
+       // //home: const OnboardingScreen(), // Show Onboarding Screen first
+        home: const LoginScreen()
+
       ),
     );
   }
