@@ -94,7 +94,7 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.fromLTRB(40, 20, 40, 30),
         child: Form(
           key: _formKey,
           child: Column(
@@ -105,7 +105,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 child: Text(
                   'Create Account',
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                      color: ColorConstant.buttonColor, fontWeight: FontWeight.bold, fontSize: 24),
                 ),
               ),
               const SizedBox(height: 20),

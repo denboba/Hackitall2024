@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider(apiUrl: apiUrl)),
         ChangeNotifierProvider(create: (_) => UserProvider(apiUrl: apiUrl)),
-        ChangeNotifierProvider(create: (context) => UserProfileProvider(),)
       ],
       child: MaterialApp(
         theme: ThemeData(

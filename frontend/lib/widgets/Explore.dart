@@ -1,224 +1,5 @@
-// // import 'package:flutter/material.dart';
-// // import 'package:image_picker/image_picker.dart';
-// // import 'dart:io';
-// //
-// // class ExploreTheCountry extends StatefulWidget {
-// //   @override
-// //   _ExploreTheCountryState createState() => _ExploreTheCountryState();
-// // }
-// //
-// // class _ExploreTheCountryState extends State<ExploreTheCountry> {
-// //   File? _image;
-// //   final _nameController = TextEditingController();
-// //   final _storyController = TextEditingController();
-// //   final _locationController = TextEditingController();
-// //
-// //   final ImagePicker _picker = ImagePicker();
-// //
-// //   Future<void> _pickImage() async {
-// //     final XFile? pickedFile = await _picker.pickImage(source: ImageSource.camera);
-// //     if (pickedFile != null) {
-// //       setState(() {
-// //         _image = File(pickedFile.path);
-// //       });
-// //     }
-// //   }
-// //
-// //   @override
-// //   Widget build(BuildContext context) {
-// //     return Scaffold(
-// //       appBar: AppBar(
-// //         title: const Text('Tourist Sites of the Country'),
-// //       ),
-// //       body: Padding(
-// //         padding: const EdgeInsets.all(16.0),
-// //         child: Column(
-// //           crossAxisAlignment: CrossAxisAlignment.start,
-// //           children: [
-// //             GestureDetector(
-// //               onTap: _pickImage,
-// //               child: Container(
-// //                 width: double.infinity,
-// //                 height: 200,
-// //                 decoration: BoxDecoration(
-// //                   color: Colors.grey[300],
-// //                   borderRadius: BorderRadius.circular(10),
-// //                 ),
-// //                 child: _image == null
-// //                     ? Icon(Icons.camera_alt, size: 50, color: Colors.white)
-// //                     : ClipRRect(
-// //                   borderRadius: BorderRadius.circular(10),
-// //                   child: Image.file(_image!, fit: BoxFit.cover),
-// //                 ),
-// //               ),
-// //             ),
-// //             SizedBox(height: 16),
-// //             TextField(
-// //               controller: _nameController,
-// //               decoration: InputDecoration(labelText: 'Site Name'),
-// //             ),
-// //             SizedBox(height: 8),
-// //             TextField(
-// //               controller: _storyController,
-// //               decoration: InputDecoration(labelText: 'Story'),
-// //               maxLines: 4,
-// //             ),
-// //             SizedBox(height: 8),
-// //             TextField(
-// //               controller: _locationController,
-// //               decoration: InputDecoration(labelText: 'Location'),
-// //             ),
-// //             SizedBox(height: 16),
-// //             ElevatedButton(
-// //               onPressed: () {
-// //                 // Display the tourist site info
-// //                 showDialog(
-// //                   context: context,
-// //                   builder: (context) => AlertDialog(
-// //                     title: Text(_nameController.text),
-// //                     content: Column(
-// //                       mainAxisSize: MainAxisSize.min,
-// //                       children: [
-// //                         _image == null
-// //                             ? Container()
-// //                             : Image.file(_image!, height: 150),
-// //                         SizedBox(height: 8),
-// //                         Text('Story: ${_storyController.text}'),
-// //                         SizedBox(height: 8),
-// //                         Text('Location: ${_locationController.text}'),
-// //                       ],
-// //                     ),
-// //                     actions: [
-// //                       TextButton(
-// //                         onPressed: () {
-// //                           Navigator.of(context).pop();
-// //                         },
-// //                         child: Text('Close'),
-// //                       ),
-// //                     ],
-// //                   ),
-// //                 );
-// //               },
-// //               child: Text('Show Tourist Site'),
-// //             ),
-// //           ],
-// //         ),
-// //       ),
-// //     );
-// //   }
-// // }
-// import 'package:flutter/material.dart';
-// import 'package:image_picker/image_picker.dart';
-// import 'dart:io';
-//
-// class ExploreTheCountry extends StatefulWidget {
-//   @override
-//   _ExploreTheCountryState createState() => _ExploreTheCountryState();
-// }
-//
-//  class _ExploreTheCountryState extends State<ExploreTheCountry> {
-//   File? _image;
-//   final _nameController = TextEditingController();
-//   final _storyController = TextEditingController();
-//   final _locationController = TextEditingController();
-//
-//   final ImagePicker _picker = ImagePicker();
-//
-//   Future<void> _pickImage() async {
-//     final XFile? pickedFile = await _picker.pickImage(source: ImageSource.camera);
-//     if (pickedFile != null) {
-//       setState(() {
-//         _image = File(pickedFile.path);
-//       });
-//     }
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Tourist Sites of the Country'),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             GestureDetector(
-//               onTap: _pickImage,
-//               child: Container(
-//                 width: double.infinity,
-//                 height: 200,
-//                 decoration: BoxDecoration(
-//                   color: Colors.grey[300],
-//                   borderRadius: BorderRadius.circular(10),
-//                 ),
-//                 child: _image == null
-//                     ? Icon(Icons.camera_alt, size: 50, color: Colors.white)
-//                     : ClipRRect(
-//                   borderRadius: BorderRadius.circular(10),
-//                   child: Image.file(_image!, fit: BoxFit.cover),
-//                 ),
-//               ),
-//             ),
-//             SizedBox(height: 16),
-//             TextField(
-//               controller: _nameController,
-//               decoration: InputDecoration(labelText: 'Site Name'),
-//             ),
-//             SizedBox(height: 8),
-//             TextField(
-//               controller: _storyController,
-//               decoration: InputDecoration(labelText: 'Story'),
-//               maxLines: 4,
-//             ),
-//             SizedBox(height: 8),
-//             TextField(
-//               controller: _locationController,
-//               decoration: InputDecoration(labelText: 'Location'),
-//             ),
-//             SizedBox(height: 16),
-//             ElevatedButton(
-//               onPressed: () {
-//                 // Display the tourist site info
-//                 showDialog(
-//                   context: context,
-//                   builder: (context) => AlertDialog(
-//                     title: Text(_nameController.text),
-//                     content: Column(
-//                       mainAxisSize: MainAxisSize.min,
-//                       children: [
-//                         _image == null
-//                             ? Container()
-//                             : Image.file(_image!, height: 150),
-//                         SizedBox(height: 8),
-//                         Text('Story: ${_storyController.text}'),
-//                         SizedBox(height: 8),
-//                         Text('Location: ${_locationController.text}'),
-//                       ],
-//                     ),
-//                     actions: [
-//                       TextButton(
-//                         onPressed: () {
-//                           Navigator.of(context).pop();
-//                         },
-//                         child: Text('Close'),
-//                       ),
-//                     ],
-//                   ),
-//                 );
-//               },
-//               child: Text('Show Tourist Site'),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
+import 'package:frontend/constants/color_constant.dart';
 
 class ExploreTheCountry extends StatefulWidget {
   @override
@@ -226,127 +7,193 @@ class ExploreTheCountry extends StatefulWidget {
 }
 
 class _ExploreTheCountryState extends State<ExploreTheCountry> {
-  final List<Map<String, dynamic>> touristSites = List.generate(
-    10,
-        (index) => {
-      'name': 'Site Name $index',
-      'location': 'Location $index',
-      'story': 'Story about the site $index',
-      'rating': 4, // Example rating
+  final List<Map<String, dynamic>> touristSites = [
+    {
+      'name': 'Sighișoara Citadel',
+      'location': 'Sighișoara, Romania',
+      'story': 'A perfectly preserved medieval citadel known as the birthplace of Vlad the Impaler, offering colorful streets and a step back in time.',
+      'image': 'assets/images/sighisoara.png',
     },
-  );
+    {
+      'name': 'Corvin Castle',
+      'location': 'Hunedoara, Romania',
+      'story': 'A stunning Gothic-style castle, rich in history and legend, known as one of the largest castles in Europe.',
+      'image': 'assets/images/corvin_castle.png',
+    },
+    {
+      'name': 'Danube Delta',
+      'location': 'Tulcea, Romania',
+      'story': 'One of Europe’s most biodiverse areas, offering unique wildlife, serene waterways, and picturesque fishing villages.',
+      'image': 'assets/images/danube_delta.png',
+    },
+    {
+      'name': 'Merry Cemetery',
+      'location': 'Săpânța, Romania',
+      'story': 'A colorful cemetery famous for its brightly painted tombstones with humorous poems and artwork reflecting the lives of the deceased.',
+      'image': 'assets/images/merry_cemetery.png',
+    },
+    {
+      'name': 'Bucegi Mountains',
+      'location': 'Prahova Valley, Romania',
+      'story': 'A majestic mountain range filled with hiking trails, natural rock formations like the Sphinx, and breathtaking panoramic views.',
+      'image': 'assets/images/bucegi_mountains.png',
+    },
+    {
+      'name': 'Turda Salt Mine',
+      'location': 'Turda, Romania',
+      'story': 'An underground wonder featuring a unique amusement park, boat rides, and a surreal experience in the depths of a salt mine.',
+      'image': 'assets/images/turda_salt_mine.png',
+    },
+    {
+      'name': 'Bigăr Waterfall',
+      'location': 'Caraș-Severin, Romania',
+      'story': 'A stunning and unique waterfall where water flows over moss-covered rocks, creating a magical curtain-like effect.',
+      'image': 'assets/images/bigar_waterfall.png',
+    },
+    {
+      'name': 'Bâlea Lake',
+      'location': 'Făgăraș Mountains, Romania',
+      'story': 'A beautiful glacial lake located in the Carpathian Mountains, accessible via the Transfăgărășan Highway.',
+      'image': 'assets/images/danube_delta.png',
+    },
+    {
+      'name': 'Scărișoara Ice Cave',
+      'location': 'Apuseni Mountains, Romania',
+      'story': 'One of the oldest ice caves in the world, featuring ancient ice formations and a unique underground experience.',
+      'image': 'assets/images/turda_salt_mine.png',
+    },
+    {
+      'name': 'The Sphinx of Bucegi',
+      'location': 'Bucegi Mountains, Romania',
+      'story': 'A natural rock formation resembling a human face, surrounded by mystery, legends, and conspiracy theories.',
+      'image': 'assets/images/bucegi_mountains.png',
+    }
+    // Add more sites as needed
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+        title: const Text(
+          'Explore Romania',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
-        title: Container(
-          alignment: Alignment.centerLeft,
-          padding: const EdgeInsets.symmetric(vertical: 10.0),
-          child: const Text(
-            'Tourist Sites of the Country',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+        centerTitle: true,
       ),
-      body: Scrollbar(
-        child: ListView.builder(
-          padding: const EdgeInsets.all(16.0),
-          itemCount: touristSites.length, // Number of tourist sites
-          itemBuilder: (context, index) {
-            final site = touristSites[index];
-            return TouristSiteCard(
-              name: site['name']!,
-              location: site['location']!,
-              story: site['story']!,
-              rating: site['rating']!,
-            );
-          },
-        ),
+      body: ListView.builder(
+        padding: const EdgeInsets.all(16.0),
+        itemCount: touristSites.length,
+        itemBuilder: (context, index) {
+          final site = touristSites[index];
+          return TouristSiteCard(
+            name: site['name']!,
+            location: site['location']!,
+            story: site['story']!,
+            imagePath: site['image']!,
+          );
+        },
       ),
     );
   }
 }
 
-// widget with text fields for tourist site details that are transmitted
 class TouristSiteCard extends StatelessWidget {
   final String name;
   final String location;
   final String story;
-  final int rating;
+  final String imagePath;
 
   const TouristSiteCard({
     Key? key,
     required this.name,
     required this.location,
     required this.story,
-    required this.rating,
+    required this.imagePath,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.only(bottom: 16.0),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Placeholder for an image
-            Container(
-              width: double.infinity,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      elevation: 4,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(15.0),
+              topRight: Radius.circular(15.0),
+            ),
+            child: Image.asset(
+              imagePath,
               height: 200,
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: const Center(
-                child: Icon(Icons.camera_alt, size: 50, color: Colors.white),
-              ),
+              width: double.infinity,
+              fit: BoxFit.cover,
             ),
-            const SizedBox(height: 16),
-
-            // Name of the site
-            Text(
-              name,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  location,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  story,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.black87,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        // Handle Like action
+                      },
+                      icon: const Icon(Icons.thumb_up_alt_outlined),
+                      color: ColorConstant.buttonColor,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        // Handle Comment action
+                      },
+                      icon: const Icon(Icons.comment_outlined),
+                      color: ColorConstant.buttonColor,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        // Handle View action
+                      },
+                      icon: const Icon(Icons.remove_red_eye_outlined),
+                      color: ColorConstant.buttonColor
+                    ),
+                  ],
+                ),
+              ],
             ),
-            const SizedBox(height: 8),
-
-            // Location of the site
-            Text(
-              "Location: $location",
-              style: const TextStyle(fontSize: 16, color: Colors.grey),
-            ),
-            const SizedBox(height: 8),
-
-            // Story about the site
-            Text(
-              story,
-              style: const TextStyle(fontSize: 14, color: Colors.black),
-            ),
-            const SizedBox(height: 16),
-
-            // Star rating
-            Row(
-              children: List.generate(5, (i) {
-                return Icon(
-                  Icons.star,
-                  color: i < rating ? Colors.amber : Colors.grey,
-                );
-              }),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

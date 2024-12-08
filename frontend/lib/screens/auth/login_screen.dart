@@ -24,9 +24,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    final userProfileProvider = Provider.of<UserProfileProvider>(context, listen: false);
-
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       authProvider.initialize().then((_) {
         if (authProvider.loggedInUser != null) {
@@ -41,20 +38,40 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.fromLTRB(40, 50, 30, 40),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               const SizedBox(height: 60.0),
-              const Center(
-                child: CircleAvatar(
-                  radius: 60.0,
-                  child: Icon(
-                    Icons.person,
-                    size: 60.0,
-                    color: ColorConstant.lightButtonColor,
-                  ),
+               Center(
+              child: Text(
+                AppStrings.appName,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold, // Bold text
+                  fontSize: 40, // Increase font size
+                  foreground: Paint()
+                    ..shader = const LinearGradient(
+                      colors: <Color>[Colors.blue, Colors.deepPurple, Colors.pink], // Gradient with more colors
+                      begin: Alignment.topLeft, // Gradient direction
+                      end: Alignment.bottomRight,
+                    ).createShader(const Rect.fromLTWH(0.0, 0.0, 300.0, 70.0)), // Shader area
+                  shadows: [
+                    Shadow(
+                      blurRadius: 8.0, // Soft shadow for more subtle effect
+                      color: Colors.black.withOpacity(0.4), // Slightly lighter shadow
+                      offset: Offset(5.0, 5.0), // Offset for the shadow
+                    ),
+                    Shadow(
+                      blurRadius: 20.0,
+                      color: Colors.white.withOpacity(0.4), // A little white shadow for glow
+                      offset: Offset(-5.0, -5.0), // Light glow effect from top-left
+                    ),
+                  ],
+                  letterSpacing: 2.0, // Adjust letter spacing for a clean look
+                  fontFamily: 'Roboto', // Use a smooth and readable font (customizable)
+                  height: 1.2, // Adjust line height for better vertical spacing
                 ),
+              ),
               ),
               const SizedBox(height: 40.0),
               if (_errorMessage != null)
@@ -139,7 +156,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         try {
                           await authProvider.login(usernameController.text, passwordController.text);
-                          await userProfileProvider.fetchUserProfile(usernameController.text);
                           if (authProvider.loggedInUser != null) {
                             print("You are in login screen${authProvider.loggedInUser}");
 

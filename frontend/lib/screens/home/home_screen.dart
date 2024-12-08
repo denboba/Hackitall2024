@@ -25,8 +25,6 @@ class HomeScreen extends StatelessWidget {
     final email = authProvider.loggedInUserEmail;
     final first = authProvider.loggedInUserFirstName;
     final last = authProvider.loggedInUserLastName;
-    final userProfileProvider = Provider.of<UserProfileProvider>(context);
-    print("this is the user profile provider $userProfileProvider");
 
 
 
