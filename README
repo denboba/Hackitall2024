@@ -1,5 +1,87 @@
-Mytribe app for  which connects peoples from same country living abroad 
-the project is implemnted in flutter and flask as backend  it is like social midia 
+MyTribe App
+MyTribe is a social media application designed to connect people from the same country living abroad. Built with a Flutter frontend and a Flask backend, MyTribe aims to foster community among expatriates by providing a platform to share experiences, events, and support.
+
+Features
+User Profiles: Create and customize personal profiles to share information about yourself.
+Community Posts: Share updates, stories, and photos with the community.
+Events: Organize and discover events happening within your expatriate community.
+Messaging: Communicate directly with other users through private messages.
+Notifications: Stay informed about community activities and interactions.
+Technologies Used
+Frontend: Flutter (Dart)
+Backend: Flask (Python)
+Database: SQLite (for development)
+APIs: Integration with third-party services for authentication and data handling.
+Getting Started
+Prerequisites
+Flutter SDK
+Python 3.x
+pip
+Installation
+Clone the repository:
+
+
+git clone https://github.com/denboba/Hackitall2024.git
+cd Hackitall2024
+
+Backend Setup:
+Navigate to the backend directory:
+
+cd backend
+Create a virtual environment:
+
+python -m venv env
+Activate the virtual environment:
+
+On Windows:
+Edit
+.\env\Scripts\activate
+On macOS/Linux:
+
+source env/bin/activate
+Install the required packages:
+
+Edit
+pip install -r requirements.txt
+Initialize the database:
+
+flask db init
+flask db migrate -m "Initial migration."
+flask db upgrade
+Run the Flask application:
+
+flask run
+Frontend Setup:
+
+Navigate to the frontend directory:
+
+cd ../frontend
+Get the Flutter dependencies:
+
+flutter pub get
+Run the Flutter application:
+
+
+flutter run
+Contributing
+We welcome contributions to enhance MyTribe. To contribute:
+
+Fork the repository.
+
+Create a new branch:
+
+git checkout -b feature/YourFeatureName
+Commit your changes:
+
+
+git commit -m "Add your feature."
+Push to the branch:
+
+git push origin feature/YourFeatureName
+Open a Pull Request.
+
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
 
 
