@@ -33,64 +33,58 @@ Make sure you have the following installed:
 ### 📥 **Installation**
 
 #### **Clone the repository:**
-```bash
  git clone https://github.com/denboba/Hackitall2024.git
  cd Hackitall2024
-```
+
 
 #### **Backend Setup:**
 Navigate to the backend directory:
-```bash
  cd backend
-```
+
 
 Create a virtual environment:
-```bash
+
  python -m venv env
-```
+
 
 Activate the virtual environment:
 - **On Windows:**
-  ```powershell
+
   .\env\Scripts\activate
-  ```
+
 - **On macOS/Linux:**
-  ```bash
+
   source env/bin/activate
-  ```
+
 
 Install the required packages:
-```bash
  pip install -r requirements.txt
-```
+
 
 Initialize the database:
-```bash
+
  flask db init
  flask db migrate -m "Initial migration."
  flask db upgrade
-```
+
 
 Run the Flask application:
-```bash
+
  flask run
-```
+
 
 #### **Frontend Setup:**
 Navigate to the frontend directory:
-```bash
  cd ../frontend
-```
+
 
 Get the Flutter dependencies:
-```bash
  flutter pub get
-```
+
 
 Run the Flutter application:
-```bash
  flutter run
-```
+
 
 ---
 ## 🤝 **Contributing**
@@ -99,23 +93,20 @@ We welcome contributions to enhance **MyTribe**. To contribute:
 
 1. **Fork** the repository.
 2. **Create a new branch:**
-   ```bash
    git checkout -b feature/YourFeatureName
-   ```
+
 3. **Commit your changes:**
-   ```bash
    git commit -m "Add your feature."
-   ```
+
 4. **Push to the branch:**
-   ```bash
    git push origin feature/YourFeatureName
-   ```
+ 
 5. **Open a Pull Request.**
 
----
+
 ## 📜 **License**
 
 This project is licensed under the **MIT License**. See the `LICENSE` file for details.
 
----
+--- 
 🎉 Happy coding! 🚀
